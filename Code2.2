@@ -4,9 +4,9 @@ import random
 
 
 
-experienced_players = input("Enter experienced players: ")
+experienced_players_s = input('Enter experienced players seperated by ","')
                             
-inexperienced_players = input("Enter inexperienced players: ")
+inexperienced_players_s = input('Enter inexperienced players seperated by ","') 
 
 teammembers = ''
 
@@ -18,11 +18,12 @@ TTeam2 = []
 
 TTeam3 = []
 
-TTeam4 = []
-
-TTeam5 = []
-
-TTeam6 = []
+def Convert(string): 
+    li = list(string.split(", ")) 
+    return li 
+ 
+experienced_players = Convert(experienced_players_s)
+inexperienced_players = Convert(inexperienced_players_s)
 
 
 #split number of players by number of teams requested
@@ -32,7 +33,7 @@ number_of_teams = input("number of teams:" )
 number_of_experienced_players = len(experienced_players) / int(number_of_teams) 
 
 number_of_inexperienced_players = len(inexperienced_players) / int(number_of_teams)
-
+ 
 teammembers = ''
 
     
@@ -77,11 +78,7 @@ add_to_team(TTeam2)
 
 add_to_team(TTeam3)
     
-add_to_team(TTeam4)
 
-add_to_team(TTeam5)
-    
-add_to_team(TTeam6)
 
 # Use Print Function to print teams to screen
 
@@ -91,27 +88,23 @@ print(TTeam2, 'Team 2')
 
 print(TTeam3, 'Team 3')
     
-print(TTeam4, 'Team 4')
-    
-print(TTeam5, 'Team 5')
-        
-print(TTeam6, 'Team 6')
+
         
 
 # Print Teams to file added Header Row for Clarification
     
-sharks1 = str(sharks).strip('[]')
-dragons1 = str(dragons).strip('[]')
-raptors1 = str(raptors).strip('[]')
+WTTeam1 = str(TTeam1).strip('[]')
+WTTeam2 = str(TTeam2).strip('[]')
+WTTeam3 = str(TTeam3).strip('[]')
 
 f = open("Tryout_Teams.txt", "w+")
 
 for i in range(1):
     f.write("\n Team 1 \n")
-    f.write(sharks1)
+    f.write(TTeam1)
     f.write("\n Team 2 \n")
-    f.write(dragons1)
+    f.write(TTeam2)
     f.write("\n Team 3 \n")
-    f.write(raptors1)
+    f.write(TTeam3)
     
 f.close()
