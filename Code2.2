@@ -1,110 +1,212 @@
-import csv
+if __name__ == "__main__":
 
-import random
-
-
-
-experienced_players_s = input('Enter experienced players seperated by ","')
-                            
-inexperienced_players_s = input('Enter inexperienced players seperated by ","') 
-
-teammembers = ''
+	import csv
+	import random
 
 
+	players = []
 
-TTeam1 = []
-
-TTeam2 = []
-
-TTeam3 = []
-
-def Convert(string): 
-    li = list(string.split(", ")) 
-    return li 
- 
-experienced_players = Convert(experienced_players_s)
-inexperienced_players = Convert(inexperienced_players_s)
+	#Step 1: Import CSV & Prep Data
+	def import_CSV():
+		with open('soccer_players.csv') as csv_file:
+			reader = csv.reader(csv_file)
+			for row in reader:
+				del row[1] #remove height attribute
+				players.append(row)
+			del players[0] #remove header row
 
 
-#split number of players by number of teams requested
+	#Step 2: build two sets of people ones with experience and ones without
+	experienced_players = []
+				inexperienced_players.append(player)
 
-number_of_teams = input("number of teams:" )
-
-number_of_experienced_players = len(experienced_players) / int(number_of_teams) 
-
-number_of_inexperienced_players = len(inexperienced_players) / int(number_of_teams)
- 
-teammembers = ''
-
-    
-#get a random sample of experienced and inexperienced players for each team
-
-def add_players(members, number_of_players):
-
-    teammembers = random.sample(members, int(number_of_players))
-
-    for team_member in teammembers:
-
-        members.remove(team_member)
-
-    return teammembers
-
-#function to add players to each team
-
-def add_to_team(team_name):
-
-    team_name.extend(add_players(experienced_players, number_of_experienced_players))
-
-    team_name.extend(add_players(inexperienced_players, number_of_inexperienced_players))
-
-    return (team_name)
-
-
-
-def print_teams(team, teamname):
-
-    print('\n')
-
-    print(team_name)
-
-    print('\n')
-
-
-# add players to teams
-
-add_to_team(TTeam1)
-
-add_to_team(TTeam2)
-
-add_to_team(TTeam3)
-    
-
-
-# Use Print Function to print teams to screen
-
-print(TTeam1, 'Team 1')
-
-print(TTeam2, 'Team 2')
-
-print(TTeam3, 'Team 3')
-    
+	#Step 3: Create teams Sharks, Dragons, Raptors with list
+	Team1 = []
+	Team2 = []
+	Team3 = []
+	Team4 = []
+	Team5 = []
+	Team6 = []
 
         
+	
+	#Step 4: Randomly assign players to teams
+	def assign_players3():
+		for experienced_player in range(int(len(experienced_players)/3)):
+			Team1.append(experienced_players.pop(experienced_player))
+		
+		for inexperienced_player in range(int(len(inexperienced_players)/3)):
+			Team1.append(inexperienced_players.pop(inexperienced_player))
 
-# Print Teams to file added Header Row for Clarification
-    
-WTTeam1 = str(TTeam1).strip('[]')
-WTTeam2 = str(TTeam2).strip('[]')
-WTTeam3 = str(TTeam3).strip('[]')
+		for experienced_player in range(int(len(experienced_players)/2)):
+			Team2.append(experienced_players.pop(experienced_player))
 
-f = open("Tryout_Teams.txt", "w+")
+		for inexperienced_player in range(int(len(inexperienced_players)/2)):
+			Team2.append(inexperienced_players.pop(inexperienced_player))
 
-for i in range(1):
-    f.write("\n Team 1 \n")
-    f.write(TTeam1)
-    f.write("\n Team 2 \n")
-    f.write(TTeam2)
-    f.write("\n Team 3 \n")
-    f.write(TTeam3)
-    
-f.close()
+		for experienced_player in range(int(len(experienced_players))):
+			Team3.append(experienced_players.pop())
+
+		for inexperienced_player in range(int(len(inexperienced_players))):
+			Team3.append(inexperienced_players.pop())
+
+	def assign_players4():
+		for experienced_player in range(int(len(experienced_players)/4)):
+			Team1.append(experienced_players.pop(experienced_player))
+		
+		for inexperienced_player in range(int(len(inexperienced_players)/4)):
+			Team1.append(inexperienced_players.pop(inexperienced_player))
+
+		for experienced_player in range(int(len(experienced_players)/3)):
+			Team2.append(experienced_players.pop(experienced_player))
+
+		for inexperienced_player in range(int(len(inexperienced_players)/3)):
+			Team2.append(inexperienced_players.pop(inexperienced_player))
+
+		for experienced_player in range(int(len(experienced_players)/2)):
+			Team3.append(experienced_players.pop())
+
+		for inexperienced_player in range(int(len(inexperienced_players)/2)):
+			Team3.append(inexperienced_players.pop())
+			
+		for experienced_player in range(int(len(experienced_players))):
+			Team3.append(experienced_players.pop())
+
+		for inexperienced_player in range(int(len(inexperienced_players))):
+			Team3.append(inexperienced_players.pop())
+			
+
+       
+        
+	#Step 6: Create a text file named teams.txt 
+	def build_txt():
+		txt_file = open("teams.txt", "w")
+		txt_file.write("Team1")
+		for TTeam1 in Team1:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam1))
+
+		txt_file.write("\n \nTeam2")
+		for TTeam2 in Team2:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam2))
+
+		txt_file.write("\n \nTeam3")
+		for TTeam3 in Team3:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam3))
+			
+                txt_file.write("\n \nTeam4")
+                for TTeam4 in Team4:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam4))
+
+	import_CSV()
+	group_players()
+	assign_players4()
+	build_txt()
+	inexperienced_players = []
+
+	def group_players():
+		for player in players:
+			if player[1] == "YES":
+				experienced_players.append(player)
+			else:
+				inexperienced_players.append(player)
+
+	#Step 3: Create teams Sharks, Dragons, Raptors with list
+	Team1 = []
+	Team2 = []
+	Team3 = []
+	Team4 = []
+	Team5 = []
+	Team6 = []
+
+        
+	
+	#Step 4: Randomly assign players to teams
+	def assign_players3():
+		for experienced_player in range(int(len(experienced_players)/3)):
+			Team1.append(experienced_players.pop(experienced_player))
+		
+		for inexperienced_player in range(int(len(inexperienced_players)/3)):
+			Team1.append(inexperienced_players.pop(inexperienced_player))
+
+		for experienced_player in range(int(len(experienced_players)/2)):
+			Team2.append(experienced_players.pop(experienced_player))
+
+		for inexperienced_player in range(int(len(inexperienced_players)/2)):
+			Team2.append(inexperienced_players.pop(inexperienced_player))
+
+		for experienced_player in range(int(len(experienced_players))):
+			Team3.append(experienced_players.pop())
+
+		for inexperienced_player in range(int(len(inexperienced_players))):
+			Team3.append(inexperienced_players.pop())
+
+	def assign_players4():
+		for experienced_player in range(int(len(experienced_players)/4)):
+			Team1.append(experienced_players.pop(experienced_player))
+		
+		for inexperienced_player in range(int(len(inexperienced_players)/4)):
+			Team1.append(inexperienced_players.pop(inexperienced_player))
+
+		for experienced_player in range(int(len(experienced_players)/3)):
+			Team2.append(experienced_players.pop(experienced_player))
+
+		for inexperienced_player in range(int(len(inexperienced_players)/3)):
+			Team2.append(inexperienced_players.pop(inexperienced_player))
+
+		for experienced_player in range(int(len(experienced_players)/2)):
+			Team3.append(experienced_players.pop())
+
+		for inexperienced_player in range(int(len(inexperienced_players)/2)):
+			Team3.append(inexperienced_players.pop())
+			
+		for experienced_player in range(int(len(experienced_players))):
+			Team3.append(experienced_players.pop())
+
+		for inexperienced_player in range(int(len(inexperienced_players))):
+			Team3.append(inexperienced_players.pop())
+			
+
+       
+        
+	#Step 6: Create a text file named teams.txt 
+	def build_txt():
+		txt_file = open("teams.txt", "w")
+		txt_file.write("Team1")
+		for TTeam1 in Team1:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam1))
+
+		txt_file.write("\n \nTeam2")
+		for TTeam2 in Team2:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam2))
+
+		txt_file.write("\n \nTeam3")
+		for TTeam3 in Team3:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam3))
+			
+                txt_file.write("\n \nTeam4")
+                for TTeam4 in Team4:
+			txt_file.write("\n")
+			txt_file.write(", ".join(TTeam4))
+
+	import_CSV()
+	group_players()
+	assign_players4()
+	build_txt()
+
+
+
+
+
+
+
+
+
+
+
