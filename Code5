@@ -87,6 +87,76 @@ def assign_players4():
     for inexperienced_player in range(int(len(inexperienced_players))):
         Team4.append(inexperienced_players.pop())
 
+def assign_players5():
+
+    for experienced_player in range(int(len(experienced_players)/5)):
+        Team1.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/5)):
+        Team1.append(inexperienced_players.pop(inexperienced_player))
+        
+    for experienced_player in range(int(len(experienced_players)/4)):
+        Team2.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/4)):
+        Team2.append(inexperienced_players.pop(inexperienced_player))
+
+    for experienced_player in range(int(len(experienced_players)/3)):
+        Team3.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/3)):
+        Team3.append(inexperienced_players.pop(inexperienced_player))
+
+    for experienced_player in range(int(len(experienced_players)/2)):
+        Team4.append(experienced_players.pop(experienced_player))
+        
+    for inexperienced_player in range(int(len(inexperienced_players)/2)):
+        Team4.append(inexperienced_players.pop(inexperienced_player))
+        
+    for experienced_player in range(int(len(experienced_players))):
+        Team5.append(experienced_players.pop())
+        
+    for inexperienced_player in range(int(len(inexperienced_players))):
+        Team5.append(inexperienced_players.pop())
+
+def assign_players6():
+
+    for experienced_player in range(int(len(experienced_players)/6)):
+        Team1.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/6)):
+        Team1.append(inexperienced_players.pop(inexperienced_player))
+        
+    for experienced_player in range(int(len(experienced_players)/5)):
+        Team2.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/5)):
+        Team2.append(inexperienced_players.pop(inexperienced_player))
+        
+    for experienced_player in range(int(len(experienced_players)/4)):
+        Team3.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/4)):
+        Team3.append(inexperienced_players.pop(inexperienced_player))
+
+    for experienced_player in range(int(len(experienced_players)/3)):
+        Team4.append(experienced_players.pop(experienced_player))
+
+    for inexperienced_player in range(int(len(inexperienced_players)/3)):
+        Team4.append(inexperienced_players.pop(inexperienced_player))
+
+    for experienced_player in range(int(len(experienced_players)/2)):
+        Team5.append(experienced_players.pop(experienced_player))
+        
+    for inexperienced_player in range(int(len(inexperienced_players)/2)):
+        Team5.append(inexperienced_players.pop(inexperienced_player))
+        
+    for experienced_player in range(int(len(experienced_players))):
+        Team6.append(experienced_players.pop())
+        
+    for inexperienced_player in range(int(len(inexperienced_players))):
+        Team6.append(inexperienced_players.pop())
+
 def team_select():
     team_number = input("Enter the number of teams as an integar ")
     if int(team_number) == 2:
@@ -95,6 +165,13 @@ def team_select():
         assign_players3()
     elif int(team_number) == 4:
         assign_players4()
+    elif int(team_number) == 5:
+        assign_players5()
+    elif int(team_number) == 6:
+        assign_players6()
+    elif int(team_number) > 6:
+        print("Six teams is the maximum value")
+        team_select()
 
 def build_txt():
     txt_file = open("teamsreal.txt", "w")
@@ -114,7 +191,15 @@ def build_txt():
     for TTeam4 in Team4:
         txt_file.write("\n")
         txt_file.write(", ".join(TTeam4))
-
+    txt_file.write("\n \nTeam 5")
+    for TTeam5 in Team5:
+        txt_file.write("\n")
+        txt_file.write(", ".join(TTeam5))
+    txt_file.write("\n \nTeam 6")
+    for TTeam6 in Team6:
+        txt_file.write("\n")
+        txt_file.write(", ".join(TTeam6))
+        
 import_CSV()
 group_players()
 team_select()
